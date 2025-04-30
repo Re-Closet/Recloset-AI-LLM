@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damage Type</title>
+</head>
+<body>
+    <h1>오염 종류 입력</h1>
+    <form id="damageForm">
+        <label for="damage_type">오염 종류 입력 (1-7):</label>
+        <input type="number" id="damage_type" name="damage_type" min="1" max="7">
+        <button type="submit">제출</button>
+    </form>
+
+    <script>
+        // 폼 제출 시, 입력된 damage_type을 URL로 전달
+        document.getElementById('damageForm').addEventListener('submit', function(event) {
+            event.preventDefault();  // 폼 기본 제출을 막음
+            var damageType = document.getElementById('damage_type').value;
+
+            // URL에 damage_type 값을 쿼리 파라미터로 추가하여 백엔드로 전달
+            var url = `/process_damage?damage_type=${damageType}`;
+            
+            // fetch를 사용하여 GET 방식으로 URL로 전달
+            fetch(url, {
+                method: 'GET',
+            })
+            .then(response => response.json())
+            .then(data => {
+                // 서버로부터 받은 프롬프트 출력
+                alert("서버 응답: " + data.prompt);
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
+
