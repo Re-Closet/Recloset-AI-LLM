@@ -6,11 +6,9 @@ import google.generativeai as genai
 from flask_cors import CORS
 from dotenv import load_dotenv
 
-# .env 파일 로드
-load_dotenv(dotenv_path=".env")
+# API 키 설정 
+api_key = "AIzaSyC08U3XDRfh-Vminqx0B2HrnNqwpSq8Ogc"
 
-# 환경 변수에서 API_KEY를 불러오기
-api_key = "api-key"
 
 # API 키 설정
 genai.configure(api_key=api_key)
@@ -85,7 +83,6 @@ def process_damage():
         response_data = {
             "response": response_text,
             "solution": solution
-            #object
         }
 
         return app.response_class(
