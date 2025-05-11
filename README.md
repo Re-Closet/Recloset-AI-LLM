@@ -1,82 +1,106 @@
 # Recloset-AI-LLM
 
-## 프로젝트 개요
+## Project Overview
 
-* **프로젝트 명**: Recloset-AI-LLM
-* **설명**: AI 기반 손상 인식 및 솔루션 제공 시스템. 이미지 손상 유형 인식 결과를 전달받고, Gemini API를 통해 LLM 기반 텍스트 생성으로 사용자에게 적합한 해결 방법을 안내하는 Flask 서버 애플리케이션.
-* **주요 기능**:
+* **Project Name**: Recloset-AI-LLM
 
-  * 이미지 기반 손상 인식 결과를 바탕으로 LLM 기반 텍스트 생성
-  * Flask 서버로 사용자 요청 처리
-  * Docker를 통한 배포
+* **Description**: An AI-based damage recognition and solution guidance system. This Flask server application receives image-based damage type recognition results and provides suitable solutions to users through LLM-based text generation using the Gemini API.
 
-## 파일 구조 설명
+* **Key Features**:
 
-* **Dockerfile**: Docker 이미지를 빌드하기 위한 설정 파일 / Flask 서버 및 필요한 라이브러리 설치
-* **README.md**: 프로젝트 소개 및 사용 가이드
-* **recloset\_llm.py**: Flask 서버의 메인 코드 / 이미지 인식 및 손상 해결 안내 처리, Gemini API를 통한 LLM 기반 안내 생성
-* **recloset\_prompt.txt**: LLM 프롬프트 설정 파일 / Gemini API에 전달할 지시어 텍스트
-* **recloset\_solution.xlsx**: 손상 유형별 해결 방법이 정리된 엑셀 파일
-* **requirements.txt**: 프로젝트 실행에 필요한 Python 패키지 목록
-* **templates/index.html**: 웹 인터페이스 템플릿
+*Text generation based on image damage type recognition results using LLM
 
-## 설치 및 실행 가이드
+*Handling user requests via a Flask server
 
-### Docker 사용
+*Deployment using Docker
 
-1. Docker 설치 확인:
+
+
+## File Structure Description
+
+* **Dockerfile**: Configuration file for building the Docker image / installs Flask server and required libraries
+
+* **README.md**: Project introduction and usage guide
+
+* **recloset_llm.py**: Main Flask server code / processes damage recognition and provides solution guidance via Gemini API
+
+* **recloset_prompt.txt**: LLM prompt configuration file / instructions passed to the Gemini API
+
+* **recloset_solution.xlsx**: Excel file summarizing solutions for each damage type
+
+* **requirements.txt**: List of required Python packages for running the project
+
+* **templates/index.html**: Web interface template
+
+
+## Installation & Execution Guide
+
+### Using Docker
+
+1. Check Docker installation:
 
    ```bash
    docker --version
    ```
-2. Docker 이미지 빌드:
+2. Build Docker image:
 
    ```bash
    docker build -t recloset-ai-llm .
    ```
-3. Docker 컨테이너 실행:
+3. Run Docker container:
 
    ```bash
    docker run -d -p 5000:5000 recloset-ai-llm
    ```
 
-### 로컬 실행
+## Local Execution
 
-1. Python 환경 설정:
+1. Set up Python environment:
 
    ```bash
    python -m venv venv
    source venv/bin/activate
    ```
-2. 패키지 설치:
+2. Install packages:
 
    ```bash
    pip install -r requirements.txt
    ```
-3. Flask 서버 실행:
+3. Run Flask server:
 
    ```bash
    python recloset_llm.py
    ```
 
-## 사용 방법
+## How to Use
 
-1. 웹 브라우저에서 `http://localhost:5000`으로 접속
-2. 이미지 업로드를 통해 손상 유형 분석 및 해결 방법 확인
-3. 각 손상 유형에 대한 안내는 `recloset_solution.xlsx` 파일의 내용에 기반
+1. Access http://localhost:5000 in your web browser
 
-## API 엔드포인트
 
-* `/`: 서버 상태 확인 (GET)
-* `/process_damage`: 손상 유형 처리 (POST)
+2. Upload an image to analyze the damage type and receive a solution
 
-  * JSON 요청 예시:
+
+3. Guidance for each damage type is based on the content of the recloset_solution.xlsx file
+
+
+
+## API Endpoints
+
+*'/': Server status check (GET)
+*'/process_damage': Process damage type (POST)
+
+  
+
+  * Example JSON request:
 
     ```json
     { "damage_type": "1" }
     ```
-  * 응답 예시:
+  * Example response:
 
     ```json
-    { "response": "Gemini API로 생성된 해결 안내 텍스트", "solution": "사전 정의된 손상 해결 방법" }
+    {  "response": "LLM-generated guidance text via Gemini API",
+  "solution": "Predefined damage solution"  }
     ```
+
+
