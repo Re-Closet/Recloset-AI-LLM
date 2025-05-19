@@ -100,7 +100,7 @@
 
     ```json
     {  "response": "LLM-generated guidance text via Gemini API",
-  "solution": "Predefined damage solution"  }
+    "solution": "Predefined damage solution"  }
     ```
 
 
